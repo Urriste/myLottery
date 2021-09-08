@@ -1,0 +1,16 @@
+<form [formGroup]="dataForm" class="lottery-form">
+  <textarea
+    name="lottery-participants"
+    cols="30"
+    rows="10"
+    placeholder="Lucas 
+Aylen 
+..."
+    class="lottery-participants"
+    formControlName="participants"
+    required
+  ></textarea>
+  <button (click)="submit()" class="btn btn-primary m-3">Sortear!</button>
+</form>
+
+<app-winner [winner]="winner"></app-winner>
