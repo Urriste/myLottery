@@ -1,0 +1,13 @@
+.alert {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .alert-winner {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .alert-paragraph {
+    font-size: 13px;
+  }
+}
