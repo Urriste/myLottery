@@ -10,7 +10,13 @@ Aylen
     formControlName="participants"
     required
   ></textarea>
+  <input
+    type="number"
+    placeholder="N° ganadores"
+    class="m-3"
+    formControlName="amount_participants"
+  />
   <button (click)="submit()" class="btn btn-primary m-3">Sortear!</button>
 </form>
 
-<app-winner [winner]="winner"></app-winner>
+<app-winner *ngIf="winners" [winners]="[winners]"></app-winner>

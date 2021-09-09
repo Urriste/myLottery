@@ -12,6 +12,7 @@ export class LotteryComponent implements OnInit {
   dataForm!: FormGroup;
   participants!: any[];
   winner!: string;
+  winners!: any[];
 
   constructor(private fb: FormBuilder) { }
   
@@ -25,9 +26,25 @@ export class LotteryComponent implements OnInit {
     console.log("click working")
  
     if(this.dataForm.valid){
-     this.participants = this.dataForm.value.participants.split("\n");
-     console.log("participants", this.participants)
-      this.winner = this.participants[Math.floor(Math.random() * this.participants.length)]
+
+    this.participants = this.dataForm.value.participants.split("\n");
+      
+    
+    if(this.dataForm.value.amount_participants == 1){
+
+        this.winners = this.participants[Math.floor(Math.random() * this.participants.length)]
+
+    }
+      
+
+    if(this.dataForm.value.amount_participants > 1){
+  
+      this.winners = this.participants.slice(0,this.dataForm.value.amount_participants);
+      console.log(this.winners);
+      this.winners = this.shuffle(this.winners);
+      
+
+      }
     }
   
     
@@ -35,9 +52,22 @@ export class LotteryComponent implements OnInit {
   }
 
 
+
+  shuffle(arr: any): Array<any> {
+    var i,j,temp;
+    for (i = arr.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+    return arr;
+  }
+
   initForm(){
      this.dataForm = this.fb.group({
     participants:[''],
+    amount_participants:['']
   })
   }
  

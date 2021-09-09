@@ -7,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class WinnerComponent implements OnInit {
 
-  @Input() winner!:string;
+  @Input() winners!:Array<any>;
 
   constructor() { }
 
