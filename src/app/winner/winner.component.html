@@ -1,5 +1,10 @@
-<div class="alert alert-info" role="alert" *ngIf="winner">
-  <p class="alert-paragraph">¡Felicitaciones</p>
-  <p class="alert-winner">{{ winner }}</p>
-  <p class="alert-paragraph">has ganado!</p>
+<div class="alert alert-info" role="alert" *ngIf="winners">
+  <p class="alert-paragraph">¡Felicitaciones!</p>
+  <div class="alert-winner">
+    <div>
+      <p *ngFor="let winner of winners; index as i">
+        {{ winner }}
+      </p>
+    </div>
+  </div>
 </div>
