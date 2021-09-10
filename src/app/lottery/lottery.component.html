@@ -16,7 +16,18 @@ Aylen
     class="m-3"
     formControlName="amount_participants"
   />
-  <button (click)="submit()" class="btn btn-primary m-3">Sortear!</button>
+  <button (click)="submit()" class="btn btn-primary m-3 px-5 py-2">
+    Sortear!
+  </button>
 </form>
 
-<app-winner *ngIf="winners" [winners]="[winners]"></app-winner>
+<div *ngIf="error" class="alert alert-danger text-center" role="alert">
+  ¡ Faltan participantes para esa cantidad de ganadores !
+</div>
+
+<app-winner
+  *ngIf="winners"
+  [winners]="[winners]"
+  [error]="error"
+  [amountParticipants]="amountParticipants"
+></app-winner>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms'
 
 
+
 @Component({
   selector: 'app-lottery',
   templateUrl: './lottery.component.html',
@@ -13,7 +14,9 @@ export class LotteryComponent implements OnInit {
   participants!: any[];
   winner!: string;
   winners!: any[];
-
+  amountParticipants!:number;
+  error!:boolean;
+  
   constructor(private fb: FormBuilder) { }
   
 
@@ -27,24 +30,38 @@ export class LotteryComponent implements OnInit {
  
     if(this.dataForm.valid){
 
-    this.participants = this.dataForm.value.participants.split("\n");
-      
-    
-    if(this.dataForm.value.amount_participants == 1){
+    this.error = false;
 
+    this.participants = this.dataForm.value.participants.split("\n");
+    this.amountParticipants = this.dataForm.value.amount_participants
+    
+    if(this.amountParticipants <= this.participants.length){
+    
+     
+      if(this.amountParticipants == 1){
+        this.error = false;
         this.winners = this.participants[Math.floor(Math.random() * this.participants.length)]
 
-    }
+      }
       
 
-    if(this.dataForm.value.amount_participants > 1){
-  
+    if(this.amountParticipants > 1){
+      this.error = false;
       this.winners = this.participants.slice(0,this.dataForm.value.amount_participants);
       console.log(this.winners);
-      this.winners = this.shuffle(this.winners);
+      this.winners = this.shuffle(this.winners.filter(Boolean).toString().split(","));
       
-
       }
+
+    }
+
+    else{
+      this.error = true;
+    }
+
+  
+
+    
     }
   
     
