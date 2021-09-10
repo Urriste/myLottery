@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup} from '@angular/forms'
 })
 export class LotteryComponent implements OnInit {
 
+
+ //VARIABLES//
   dataForm!: FormGroup;
   participants!: any[];
   winner!: string;
@@ -26,20 +28,24 @@ export class LotteryComponent implements OnInit {
   }
 
   submit(){
-    console.log("click working")
+   
  
     if(this.dataForm.valid){
 
     this.error = false;
-
+    
+    //split the participants array by the spaces//
     this.participants = this.dataForm.value.participants.split("\n");
     this.amountParticipants = this.dataForm.value.amount_participants
     
+    //simple comparation to manage too much participants for few participants error//
     if(this.amountParticipants <= this.participants.length){
     
      
       if(this.amountParticipants == 1){
         this.error = false;
+
+        //if there's only one participant, then we get a random number to get a position in the array and get the winner//
         this.winners = this.participants[Math.floor(Math.random() * this.participants.length)]
 
       }
@@ -47,8 +53,12 @@ export class LotteryComponent implements OnInit {
 
     if(this.amountParticipants > 1){
       this.error = false;
+
+      //we slice the array of participants from the beggining to the amount of participants//
       this.winners = this.participants.slice(0,this.dataForm.value.amount_participants);
-      console.log(this.winners);
+ 
+
+      //here we delete the empty fields of the array with filter(boolean), and also split the array by the commas //
       this.winners = this.shuffle(this.winners.filter(Boolean).toString().split(","));
       
       }
@@ -69,7 +79,7 @@ export class LotteryComponent implements OnInit {
   }
 
 
-
+  //this func shuffle the array to get the winners//
   shuffle(arr: any): Array<any> {
     var i,j,temp;
     for (i = arr.length - 1; i > 0; i--) {
