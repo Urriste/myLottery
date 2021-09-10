@@ -8,6 +8,13 @@
     font-weight: bold;
   }
   .alert-paragraph {
-    font-size: 13px;
+    font-size: 14px;
+    color: rgb(43, 43, 43);
+  }
+
+  .winner,
+  .place {
+    color: black;
+    font-size: 25px;
   }
 }

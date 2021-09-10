@@ -1,10 +1,24 @@
-<div class="alert alert-info" role="alert" *ngIf="winners">
-  <p class="alert-paragraph">¡Felicitaciones!</p>
-  <div class="alert-winner">
-    <div>
-      <p *ngFor="let winner of winners; index as i">
-        {{ winner }}
-      </p>
+<ng-container *ngIf="!error">
+  <div class="alert alert-success" role="alert" *ngIf="winners">
+    <p class="alert-paragraph">¡Felicitaciones!</p>
+    <div class="alert-winner">
+      <ng-container *ngIf="amountParticipants == 1">
+        <div>
+          <p>
+            <span class="place">Puesto 1: </span>
+            <span class="winner">{{ winners }}</span>
+          </p>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="amountParticipants > 1">
+        <div *ngFor="let winner of winners[0]; index as i">
+          <p>
+            <span class="place">Puesto {{ i + 1 }}: </span>
+            <span class="winner">{{ winner }}</span>
+          </p>
+        </div>
+      </ng-container>
     </div>
   </div>
-</div>
+</ng-container>

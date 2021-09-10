@@ -6,7 +6,9 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { HeaderComponent } from './header/header.component';
 import { LotteryComponent } from './lottery/lottery.component';
 import { WinnerComponent } from './winner/winner.component';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
+
+
+
 
 @NgModule({
   declarations: [
@@ -14,12 +16,13 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     NavbarComponent,
     HeaderComponent,
     LotteryComponent,
-    WinnerComponent
+    WinnerComponent,
+    
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
-    MatSnackBarModule
+  
   ],
   providers: [],
   bootstrap: [AppComponent]
