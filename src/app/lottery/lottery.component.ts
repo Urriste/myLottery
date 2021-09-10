@@ -55,9 +55,9 @@ export class LotteryComponent implements OnInit {
       this.error = false;
 
       //we slice the array of participants from the beggining to the amount of participants//
-      this.winners = this.participants.slice(0,this.dataForm.value.amount_participants);
- 
+      this.participants = this.shuffle( this.participants);
 
+      this.winners = this.shuffle( this.participants.slice(0,this.dataForm.value.amount_participants))
       //here we delete the empty fields of the array with filter(boolean), and also split the array by the commas //
       this.winners = this.shuffle(this.winners.filter(Boolean).toString().split(","));
       
